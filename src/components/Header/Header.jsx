@@ -3,6 +3,8 @@ import Button from "../Button/Button";
 import './Header.css';
 
 const Header = () => {
+    const tg = window.Telegram.WebApp;
+
     const onClose =  () =>{
         tg.close()
     };
