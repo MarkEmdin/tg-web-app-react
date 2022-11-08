@@ -15,15 +15,10 @@ const products = [
 ]
 
 const ProductList = () => {
-    const {currentlyItem,setCurrentlyItem} = useState();
     const {tg} = useTelegram();
 
     const onAdd = (product) =>{
-        setCurrentlyItem(product);
-        tg.MainButton.setParams({
-            text: "Владелец:" + currentlyItem.id
-        })
-        tg.MainButton.show();
+        console.log(product);
     }
 
     return (
