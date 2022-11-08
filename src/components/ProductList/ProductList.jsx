@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './ProductList.css'
 import ProductItem from "../ProductItem/ProductItem";
+import {useTelegram} from "../../hooks/useTelegram";
 
 const products = [
     {id: '1', title: 'Джинсы', description: 'Синего цвета, прямые',image_url:'https://static.reserved.com/media/catalog/product/cache/1200/a4e40ebdc3e371adff845072e1c73f37/3/0/3046C-55J-010-1-324961.jpg'},
@@ -14,11 +15,26 @@ const products = [
 ]
 
 const ProductList = () => {
+    const {currentlyItem,setCurrentlyItem} = useState();
+    const {tg} = useTelegram();
+
+    useEffect(()=>{
+        tg.MainButton.setParams({
+            text: currentlyItem.id
+        })
+    },[])
+
+    const onAdd = (product) =>{
+        setCurrentlyItem(product);
+        tg.MainButton.hide();
+    }
+
     return (
         <div className={'list'}>
             {products.map(item => (
                 <ProductItem
                     product={item}
+                    onAdd={onAdd}
                     className={'item'}
                 />
             ))}
