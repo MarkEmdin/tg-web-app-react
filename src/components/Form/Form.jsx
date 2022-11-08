@@ -1,10 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useTelegram} from "../../hooks/useTelegram";
 import './Form.css'
 
 const Form = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [telephone, setTelephone] = useState('');
+    const {tg} = useTelegram();
+
+    useEffect(()=>{
+        tg.MainButton.setParams({
+            text:"Отправить"
+        })
+    },[])
+
+    useEffect(()=>{
+        if(!title || !description){
+            tg.MainButton.hide();
+        }else{
+            tg.MainButton.show();
+        }
+    },[title,description])
 
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
@@ -34,6 +50,7 @@ const Form = () => {
                 onChange={onChangeDescription}
             />
             <select value={telephone} onChange={onChangeTelephone} className={'select'}>
+
                 <option value={'Telegram'}>Телеграм</option>
                 <option value={'Telephone'}>Звонок по телефону</option>
             </select>
