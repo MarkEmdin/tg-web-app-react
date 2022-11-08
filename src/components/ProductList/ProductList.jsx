@@ -18,14 +18,11 @@ const ProductList = () => {
     const {currentlyItem,setCurrentlyItem} = useState();
     const {tg} = useTelegram();
 
-    useEffect(()=>{
+    const onAdd = (product) =>{
+        setCurrentlyItem(product);
         tg.MainButton.setParams({
             text: currentlyItem.id
         })
-    },[])
-
-    const onAdd = (product) =>{
-        setCurrentlyItem(product);
         tg.MainButton.hide();
     }
 
