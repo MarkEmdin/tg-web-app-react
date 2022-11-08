@@ -21,7 +21,7 @@ const ProductList = () => {
     const onAdd = (product) =>{
         setCurrentlyItem(product);
         tg.MainButton.setParams({
-            text: currentlyItem.id
+            text: "Владелец:" + currentlyItem.id
         })
         tg.MainButton.show();
     }
