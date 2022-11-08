@@ -10,7 +10,7 @@ import Form from "./components/Form/Form";
 
 
 function App() {
-    const {tg, onToggleButton} = useTelegram()
+    const {tg} = useTelegram()
 
     useEffect(()=>{
         tg.ready(); // метод сообщает о том, что приложение инициализировалось
@@ -24,8 +24,9 @@ function App() {
     <div className="App">
         <Header/>
         <Routes>
-            <Route index element = {<ProductList/>} />
-            <Route path={'/form'} element={<Form/>} />
+            <Route index element = {<Form/>} />
+            {/*<Route index element = {<ProductList/>} />*/}
+            <Route path={'/form'} element={<ProductList/>} />
         </Routes>
     </div>
   );
