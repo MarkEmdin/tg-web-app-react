@@ -5,7 +5,7 @@ import './Form.css'
 const Form = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [telephone, setTelephone] = useState('');
+    const [telephone, setTelephone] = useState('Telegram');
     const {tg} = useTelegram();
 
     const onSendData = useCallback(() => {
@@ -67,7 +67,6 @@ const Form = () => {
                 onChange={onChangeDescription}
             />
             <select value={telephone} onChange={onChangeTelephone} className={'select'}>
-
                 <option value={'Telegram'}>Телеграм</option>
                 <option value={'Telephone'}>Звонок по телефону</option>
             </select>
