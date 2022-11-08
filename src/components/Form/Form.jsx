@@ -15,11 +15,11 @@ const Form = () => {
             telephone
         }
         const mydata = {
-            "title": title,
-            "picture_url": "dss",
-            "location": "TLV",
-            "telephone": telephone,
-            "description": description
+            title: title,
+            picture_url: "dss",
+            location: "TLV",
+            telephone: telephone,
+            description: description
         }
         fetch('http://localhost:8080/api/ads?id=10', {
             method: 'POST',
