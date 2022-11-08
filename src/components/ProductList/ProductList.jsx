@@ -23,7 +23,7 @@ const ProductList = () => {
         tg.MainButton.setParams({
             text: currentlyItem.id
         })
-        tg.MainButton.hide();
+        tg.MainButton.show();
     }
 
     return (
