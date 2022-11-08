@@ -1,5 +1,6 @@
 import React from 'react';
 import './ProductList.css'
+import ProductItem from "../ProductItem/ProductItem";
 
 const products = [
     {id: '1', title: 'Джинсы', description: 'Синего цвета, прямые'},
