@@ -2,10 +2,12 @@
 import './App.css';
 import {useEffect} from "react";
 import Header from "./components/Header/Header";
-const tg = window.Telegram.WebApp;
+import {useTelegram} from "./hooks/useTelegram";
+
 
 
 function App() {
+    const {tg, onToggleButton} = useTelegram()
 
     useEffect(()=>{
         tg.ready(); // метод сообщает о том, что приложение инициализировалось
@@ -17,8 +19,7 @@ function App() {
 
   return (
     <div className="App">
-        <Header></Header>
-        <button onClick={onClose}>Close</button>
+        <button onClick={onToggleButton}>Toggle</button>
     </div>
   );
 }
