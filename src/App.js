@@ -1,4 +1,3 @@
-
 import './App.css';
 import {useEffect} from "react";
 import Header from "./components/Header/Header";
@@ -16,9 +15,9 @@ function App() {
         tg.ready(); // метод сообщает о том, что приложение инициализировалось
     },[])
 
-    const onClose = () =>{
-        tg.close();
-    }
+    // const onClose = () =>{
+    //     tg.close();
+    // }
 
   return (
     <div className="App">
@@ -26,7 +25,7 @@ function App() {
         <Routes>
             {/*<Route index element = {<Form/>} />*/}
             <Route index element = {<ProductList/>} />
-            <Route path={'/form'} element={<Form/>} />
+            <Route path={'form'} element={<Form/>} />
         </Routes>
     </div>
   );
