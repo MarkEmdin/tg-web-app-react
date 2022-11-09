@@ -17,18 +17,6 @@ const Form = () => {
             description,
             telephone
         }
-        const mydata = {
-            title: title,
-            picture_url: "https://img2.akspic.ru/previews/5/8/2/8/6/168285/168285-astronavt-risovanie-kosmos-kosmicheskoe_prostranstvo-multfilm-500x.jpg",
-            location: city,
-            telephone: telephone,
-            description: description
-        }
-        // поправить id того, кто отправляет посылку!!!
-        axios.post(`http://localhost:8080/api/ads?id=10`,  mydata )
-            .then(res => {
-                console.log(res.data);
-            })
         tg.sendData(JSON.stringify(data));
     }, [title,city,description,telephone])
 
