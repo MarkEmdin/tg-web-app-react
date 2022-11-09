@@ -1,35 +1,36 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useTelegram} from "../../hooks/useTelegram";
 import './Form.css'
+import axios from "axios";
 
 const Form = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [city, setCity] = useState('');
     const [telephone, setTelephone] = useState('Telegram');
     const {tg} = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
             title,
+            city,
             description,
             telephone
         }
         const mydata = {
             title: title,
-            picture_url: "dss",
-            location: "TLV",
+            picture_url: "https://img2.akspic.ru/previews/5/8/2/8/6/168285/168285-astronavt-risovanie-kosmos-kosmicheskoe_prostranstvo-multfilm-500x.jpg",
+            location: city,
             telephone: telephone,
             description: description
         }
-        fetch('http://localhost:8080/api/ads?id=10', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(mydata)
-        })
+        // поправить id того, кто отправляет посылку!!!
+        axios.post(`http://localhost:8080/api/ads?id=10`,  mydata )
+            .then(res => {
+                console.log(res.data);
+            })
         tg.sendData(JSON.stringify(data));
-    }, [title, description, telephone])
+    }, [title,city,description,telephone])
 
     useEffect(()=>{
         tg.onEvent('mainButtonClicked', onSendData)
@@ -46,15 +47,18 @@ const Form = () => {
     },[])
 
     useEffect(()=>{
-        if(!title || !description){
+        if(!title || !description || !city){
             tg.MainButton.hide();
         }else{
             tg.MainButton.show();
         }
-    },[title,description])
+    },[title,city,description])
 
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
+    }
+    const onChangeCity = (e) => {
+        setCity(e.target.value)
     }
     const onChangeDescription = (e) => {
         setDescription(e.target.value)
@@ -72,6 +76,13 @@ const Form = () => {
                 placeholder={'Название'}
                 value={title}
                 onChange={onChangeTitle}
+            />
+            <input
+                className={'input'}
+                type="text"
+                placeholder={'Город'}
+                value={city}
+                onChange={onChangeCity}
             />
             <input
                 className={'input'}

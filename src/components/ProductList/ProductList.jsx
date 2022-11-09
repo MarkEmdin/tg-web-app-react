@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import './ProductList.css'
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
+import axios from "axios";
+
 
 const products = [
     {id: '1', title: 'Джинсы', description: 'Синего цвета, прямые',image_url:'https://static.reserved.com/media/catalog/product/cache/1200/a4e40ebdc3e371adff845072e1c73f37/3/0/3046C-55J-010-1-324961.jpg'},
@@ -19,6 +21,23 @@ const ProductList = () => {
 
     const onAdd = (product) =>{
         console.log(product);
+        // const mydata = {
+        //     title: "test",
+        //     picture_url: "dss",
+        //     location: "TLV",
+        //     telephone: "telephone",
+        //     description: "description"
+        // }
+        axios({
+            method: 'get',
+            url: 'http://localhost:8080/api/ads/1',
+            headers:  {
+                "Access-Control-Allow-Origin": "*"
+            }
+        })
+            .then(res => console.log(res)).catch(error => console.log(error));
+         axios.get('http://localhost:8080/api/ads/1')
+             .then(res => console.log(res)).catch(error => console.log(error));
     }
 
     return (
