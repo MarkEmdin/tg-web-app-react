@@ -41,7 +41,7 @@ const ProductList = () => {
     }, [setAds]);
 
     const onSendData  = () =>{
-        tg.sendData(JSON.stringify(currentProduct));;
+        tg.sendData(JSON.stringify(currentProduct));
     }
 
     // обрабатываем нажатие на кнопку товара
