@@ -31,16 +31,10 @@ const ProductList = () => {
     }, [setAds]);
 
     const onAdd = (product) =>{
+
         // срабатваает когда нажимают кнопку "написать" у тавара
-        console.log(ads);
-    //     axios({
-    //         method: 'get',
-    //         url: 'http://localhost:8080/api/ads/1',
-    //         headers:  {
-    //             "Access-Control-Allow-Origin": "*"
-    //         }
-    //     })
-    //         .then(res => console.log(res)).catch(error => console.log(error));
+        // отправляем запрос в бот, чтобы он написал сообщение с контактима человека
+        console.log(`Что бы получить "${product.title}" необходимо написать пользователю по id #id${product.user_id}` );
     }
 
     return (
