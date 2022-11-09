@@ -21,21 +21,21 @@ const ProductList = () => {
     const [ads,setAds] = useState([{}])
     const [currentProduct,setCurrentProduct] = useState({})
 
-    const onSendData = useCallback(() => {
-        const data = {
-            name: "testData"
-        }
-        tg.sendData(JSON.stringify(data));
-    }, [currentProduct])
+    // const onSendData = useCallback(() => {
+    //     const data = {
+    //         name: "testData"
+    //     }
+    //     tg.sendData(JSON.stringify(data));
+    // }, [currentProduct])
 
     // для отправки данных об одном товаре боту
-    useEffect(()=>{
-        tg.onEvent('mainButtonClicked', onSendData)
-        return ()=>{
-            tg.offEvent('mainButtonClicked', onSendData)
-        }
-
-    },[onSendData])
+    // useEffect(()=>{
+    //     tg.onEvent('mainButtonClicked', onSendData)
+    //     return ()=>{
+    //         tg.offEvent('mainButtonClicked', onSendData)
+    //     }
+    //
+    // },[onSendData])
 
     // для инициализации списка все товаров
     useEffect(() => {
@@ -55,6 +55,10 @@ const ProductList = () => {
             text: "Информация о товаре"
         })
         tg.MainButton.show()
+        Telegram.WebApp.onEvent('mainButtonClicked', function(){
+            tg.sendData("some string that we need to send");
+            //при клике на основную кнопку отправляем данные в строковом виде
+        });
 
         // срабатваает когда нажимают кнопку "написать" у тавара
         // отправляем запрос в бот, чтобы он написал сообщение с контактима человека
