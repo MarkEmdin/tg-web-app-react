@@ -22,13 +22,13 @@ const ProductList = () => {
     const [currentProduct,setCurrentProduct] = useState({})
 
     // для отправки данных об одном товаре боту
-    useEffect(()=>{
-        tg.onEvent('mainButtonClicked', onSendData)
-        return ()=>{
-            tg.offEvent('mainButtonClicked', onSendData)
-        }
-
-    },[onSendData])
+    // useEffect(()=>{
+    //     tg.onEvent('mainButtonClicked', onSendData)
+    //     return ()=>{
+    //         tg.offEvent('mainButtonClicked', onSendData)
+    //     }
+    //
+    // },[onSendData])
 
     // для инициализации списка все товаров
     useEffect(() => {
@@ -40,9 +40,9 @@ const ProductList = () => {
         });
     }, [setAds]);
 
-    const onSendData  = () =>{
-        tg.sendData(JSON.stringify(currentProduct));
-    }
+    // const onSendData  = () =>{
+    //     tg.sendData(JSON.stringify(currentProduct));
+    // }
 
     // обрабатываем нажатие на кнопку товара
     const onAdd = (product) =>{
@@ -59,7 +59,7 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
-            {productsTest.map(item => (
+            {ads.map(item => (
                 <ProductItem
                     key = {item.id + item.title}
                     product={item}
