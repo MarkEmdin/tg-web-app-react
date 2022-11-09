@@ -35,6 +35,7 @@ const ProductList = () => {
         //     text:`${product.user_id}`
         // })
         // tg.MainButton.show()
+        tg.sendData("some string that we need to send");
 
         // срабатваает когда нажимают кнопку "написать" у тавара
         // отправляем запрос в бот, чтобы он написал сообщение с контактима человека
