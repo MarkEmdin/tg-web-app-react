@@ -13,7 +13,7 @@ const ProductItem = ({product, className, onAdd}) => {
             <div className={'title'}>{product.title}</div>
             <div className={'description'}>{product.description}</div>
             <Button className={'add-btn'} onClick={onAddHandler}>
-                Написать
+                Хочу!
             </Button>
         </div>
     );
