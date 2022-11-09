@@ -42,6 +42,7 @@ const Form = () => {
         }
     },[title,city,description])
 
+
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
     }

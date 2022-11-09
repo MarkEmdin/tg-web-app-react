@@ -19,8 +19,18 @@ const productsTest = [
 const ProductList = () => {
     const {tg} = useTelegram();
     const [ads,setAds] = useState([{}])
+    const [currentProduct,setCurrentProduct] = useState({})
 
+    // для отправки данных об одном товаре боту
+    useEffect(()=>{
+        tg.onEvent('mainButtonClicked', onSendData)
+        return ()=>{
+            tg.offEvent('mainButtonClicked', onSendData)
+        }
 
+    },[onSendData])
+
+    // для инициализации списка все товаров
     useEffect(() => {
         const apiUrl = 'http://localhost:8080/api/ads/';
         axios.get(apiUrl).then((resp) => {
@@ -30,12 +40,17 @@ const ProductList = () => {
         });
     }, [setAds]);
 
+    const onSendData  = () =>{
+        tg.sendData("some string that we need to send");
+    }
+
+    // обрабатываем нажатие на кнопку товара
     const onAdd = (product) =>{
+        setCurrentProduct(product);
         tg.MainButton.setParams({
             text:`${product.user_id}`
         })
         tg.MainButton.show()
-        tg.sendData("some string that we need to send");
 
         // срабатваает когда нажимают кнопку "написать" у тавара
         // отправляем запрос в бот, чтобы он написал сообщение с контактима человека
