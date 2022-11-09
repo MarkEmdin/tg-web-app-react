@@ -31,6 +31,10 @@ const ProductList = () => {
     }, [setAds]);
 
     const onAdd = (product) =>{
+        tg.MainButton.setParams({
+            text:`${product.user_id}`
+        })
+        tg.MainButton.show()
 
         // срабатваает когда нажимают кнопку "написать" у тавара
         // отправляем запрос в бот, чтобы он написал сообщение с контактима человека
