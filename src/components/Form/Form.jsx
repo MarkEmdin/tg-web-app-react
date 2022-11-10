@@ -8,7 +8,6 @@ const Form = () => {
     const [description, setDescription] = useState('');
     const [city, setCity] = useState('');
     const [telephone, setTelephone] = useState('Telegram');
-    const [selectedFile, setSelectedFile] = useState(null);
     const {tg} = useTelegram();
 
     const onSendData = useCallback(() => {
@@ -80,12 +79,6 @@ const Form = () => {
                 value={description}
                 onChange={onChangeDescription}
             />
-            {/*<input*/}
-            {/*    type="file"*/}
-            {/*    accept="image/*"*/}
-            {/*    value={selectedFile}*/}
-            {/*    onChange={setSelectedFile (e.target.files[0])}*/}
-            {/*/>*/}
             <select value={telephone} onChange={onChangeTelephone} className={'select'}>
                 <option value={'Telegram'}>Телеграм</option>
                 <option value={'Telephone'}>Звонок по телефону</option>
