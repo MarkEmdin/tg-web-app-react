@@ -26,7 +26,8 @@ const ProductList = () => {
             product:currentProduct,
             queryId: queryId
         }
-        const urlString = "http://192.168.0.2/web-data"
+        // передаем данные о выбранном продукте в Приложение
+        const urlString = "http://77.244.221.156:8000/web-data"
         fetch(urlString, {
             method: 'POST',
             headers: {
@@ -49,6 +50,7 @@ const ProductList = () => {
     // для инициализации списка все товаров
     useEffect(() => {
         const apiUrl = 'http://localhost:8080/api/ads/';
+        //const apiGlobalUrl = "https://048c-2a00-a040-1a4-8cb6-5a3-2490-5bb9-290c.eu.ngrok.io/api/ads/"
         // const config = {
         //     headers: {
         //         "Access-Control-Allow-Origin": "*",
@@ -58,7 +60,6 @@ const ProductList = () => {
         //const apiUrl = ' https://7a8e-2a00-a040-1a4-8cb6-802e-b5e7-f196-fc80.eu.ngrok.io/api/ads/';
         axios.get(apiUrl).then((resp) => {
             const allAds = resp.data;
-            // console.log(typeof (allAds));
             setAds(allAds);
         });
     }, [setAds]);
