@@ -80,12 +80,12 @@ const Form = () => {
                 value={description}
                 onChange={onChangeDescription}
             />
-            <input
-                type="file"
-                accept="image/*"
-                value={selectedFile}
-                onChange={setSelectedFile (e.target.files[0])}
-            />
+            {/*<input*/}
+            {/*    type="file"*/}
+            {/*    accept="image/*"*/}
+            {/*    value={selectedFile}*/}
+            {/*    onChange={setSelectedFile (e.target.files[0])}*/}
+            {/*/>*/}
             <select value={telephone} onChange={onChangeTelephone} className={'select'}>
                 <option value={'Telegram'}>Телеграм</option>
                 <option value={'Telephone'}>Звонок по телефону</option>
