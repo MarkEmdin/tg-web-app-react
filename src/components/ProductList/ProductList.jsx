@@ -17,23 +17,30 @@ import './ProductList.css'
 // ]
 
 const ProductList = () => {
-    const {tg} = useTelegram();
+    const {tg,queryId} = useTelegram();
     const [ads,setAds] = useState([{}])
     const [currentProduct,setCurrentProduct] = useState({})
 
     const onSendData = useCallback(() => {
         const data = {
-            name: "testData",
-            currentProduct
+            product:currentProduct,
+            queryId: queryId
         }
-        tg.sendData(JSON.stringify(data));
+        const urlString = "http://192.168.0.2/web-data"
+        fetch(urlString, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
     }, [currentProduct])
 
     // для отправки данных об одном товаре боту
     useEffect(()=>{
         tg.onEvent('mainButtonClicked', onSendData)
         return ()=>{
-            tg.MainButton.hide()
+            // tg.MainButton.hide()
             tg.offEvent('mainButtonClicked', onSendData)
         }
 
@@ -42,12 +49,20 @@ const ProductList = () => {
     // для инициализации списка все товаров
     useEffect(() => {
         const apiUrl = 'http://localhost:8080/api/ads/';
+        // const config = {
+        //     headers: {
+        //         "Access-Control-Allow-Origin": "*",
+        //         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+        //     }
+        // }
+        //const apiUrl = ' https://7a8e-2a00-a040-1a4-8cb6-802e-b5e7-f196-fc80.eu.ngrok.io/api/ads/';
         axios.get(apiUrl).then((resp) => {
             const allAds = resp.data;
             // console.log(typeof (allAds));
             setAds(allAds);
         });
     }, [setAds]);
+
     useEffect(()=>{
         tg.MainButton.setParams({
             text:"Информация о товаре"
