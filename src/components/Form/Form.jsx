@@ -56,10 +56,6 @@ const Form = () => {
     const onChangeTelephone = (e) => {
         setTelephone(e.target.value)
     }
-    const onChangeFile = (e) => {
-        setSelectedFile(e.target.files[0])
-    }
-
     return (
         <div className={"form"}>
             <h3>Введите информацию о товаре</h3>
@@ -86,8 +82,9 @@ const Form = () => {
             />
             <input
                 type="file"
+                accept="image/*"
                 value={selectedFile}
-                onChange={onChangeFile}
+                onChange={setSelectedFile (e.target.files[0])}
             />
             <select value={telephone} onChange={onChangeTelephone} className={'select'}>
                 <option value={'Telegram'}>Телеграм</option>
