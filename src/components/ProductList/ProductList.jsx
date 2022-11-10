@@ -33,6 +33,7 @@ const ProductList = () => {
     useEffect(()=>{
         tg.onEvent('mainButtonClicked', onSendData)
         return ()=>{
+            tg.MainButton.hide()
             tg.offEvent('mainButtonClicked', onSendData)
         }
 
