@@ -49,20 +49,12 @@ const ProductList = () => {
 
     // для инициализации списка все товаров
     useEffect(() => {
-        const apiUrl = 'http://77.244.221.156:8080/api/ads/';
-        //const apiGlobalUrl = "https://048c-2a00-a040-1a4-8cb6-5a3-2490-5bb9-290c.eu.ngrok.io/api/ads/"
-        // const config = {
-        //     headers: {
-        //         "Access-Control-Allow-Origin": "*",
-        //         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-        //     }
-        // }
-        //const apiUrl = ' https://7a8e-2a00-a040-1a4-8cb6-802e-b5e7-f196-fc80.eu.ngrok.io/api/ads/';
+        const apiUrl = 'http://77.244.221.156:8080/api/ads';
         axios.get(apiUrl).then((resp) => {
             const allAds = resp.data;
             setAds(allAds);
         });
-    }, [setAds]);
+    }, []);
 
     useEffect(()=>{
         tg.MainButton.setParams({
