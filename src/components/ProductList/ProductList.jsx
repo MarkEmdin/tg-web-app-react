@@ -66,8 +66,23 @@ const ProductList = () => {
     // обрабатываем нажатие на кнопку товара
     const onAdd = (product) =>{
         setCurrentProduct(product);
-        tg.MainButton.show()
+        //tg.MainButton.show()
 
+        // передаем данные о выбранном продукте в Приложение
+        ///////////////// при нажатие кнопки ХОЧУ!
+        const data = {
+            product:currentProduct,
+            queryId: queryId
+        }
+        const urlString = "http://77.244.221.156:8000/web-data"
+        fetch(urlString, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+        ////////
         // срабатваает когда нажимают кнопку "написать" у тавара
         // отправляем запрос в бот, чтобы он написал сообщение с контактима человека
         console.log(`Что бы получить "${product.title}" необходимо написать пользователю по id #id${product.user_id}` );
@@ -75,7 +90,7 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
-            {ads.map(item => (
+            {productsTest.map(item => (
                 <ProductItem
                     key = {item.id + item.title}
                     product={item}
