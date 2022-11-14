@@ -34,7 +34,7 @@ const ProductList = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        })
+        }).then(res => console.log("ok")).catch(e=>console.log(e))
     }, [currentProduct])
 
     // для отправки данных об одном товаре боту
