@@ -75,7 +75,7 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
-            {productsTest.map(item => (
+            {ads.map(item => (
                 <ProductItem
                     key = {item.id + item.title}
                     product={item}
