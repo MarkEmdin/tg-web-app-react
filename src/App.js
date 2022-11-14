@@ -15,10 +15,6 @@ function App() {
         tg.ready(); // метод сообщает о том, что приложение инициализировалось
     },[])
 
-    // const onClose = () =>{
-    //     tg.close();
-    // }
-
   return (
     <div className="App">
         <Header/>
